@@ -8,11 +8,26 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //setContentView(R.layout.activity_main);
-        //setContentView(R.layout.activity_lock);
-        setContentView(R.layout.activity_pinlock);
+        //displaySettings();
+        displayPinlock();
+        //displayPasswordLock();
 
         //EditText passwordEditText = findViewById(R.id.passwordEditText);
         //passwordEditText.setText("Penis!");
+    }
+
+    private void displaySettings() {
+        setTitle("Settings");
+        setContentView(R.layout.activity_settings);
+    }
+
+    private void displayPasswordLock() {
+        setTitle("Unlock with password");
+        setContentView(R.layout.activity_passwordlock);
+    }
+
+    private void displayPinlock() {
+        setTitle("Unlock with pincode");
+        setContentView(R.layout.activity_pinlock);
     }
 }

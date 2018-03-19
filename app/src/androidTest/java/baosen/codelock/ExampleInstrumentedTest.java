@@ -1,4 +1,4 @@
-package baosen.passlock;
+package baosen.codelock;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

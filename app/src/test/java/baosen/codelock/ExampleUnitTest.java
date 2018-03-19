@@ -1,4 +1,4 @@
-package baosen.passlock;
+package baosen.codelock;
 
 import org.junit.Test;
 

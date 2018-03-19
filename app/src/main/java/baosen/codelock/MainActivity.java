@@ -1,8 +1,7 @@
-package baosen.passlock;
+package baosen.codelock;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -10,9 +9,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //setContentView(R.layout.activity_main);
-        setContentView(R.layout.activity_lock);
+        //setContentView(R.layout.activity_lock);
+        setContentView(R.layout.activity_pinlock);
 
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
-        passwordEditText.setText("Penis!");
+        //EditText passwordEditText = findViewById(R.id.passwordEditText);
+        //passwordEditText.setText("Penis!");
     }
 }

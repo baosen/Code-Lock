@@ -1,4 +1,4 @@
-<h1 align="center">CodeLock</h1>
+<h1 align="center">Code Lock (alpha)</h1>
 
 <br/>
 <p align="center">

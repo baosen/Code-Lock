@@ -2,8 +2,11 @@ package baosen.codelock;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telecom.TelecomManager;
 
 public class MainActivity extends AppCompatActivity {
+    TelecomManager telecomManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -13,6 +16,11 @@ public class MainActivity extends AppCompatActivity {
         //displayPasswordLock();
 
         //EditText passwordEditText = findViewById(R.id.passwordEditText);
+        telecomManager = getTelecomService();
+    }
+
+    private TelecomManager getTelecomService() {
+        return (TelecomManager) getSystemService(TELECOM_SERVICE);
     }
 
     private void displaySettings() {

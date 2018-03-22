@@ -13,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
         //displayPasswordLock();
 
         //EditText passwordEditText = findViewById(R.id.passwordEditText);
-        //passwordEditText.setText("Penis!");
     }
 
     private void displaySettings() {

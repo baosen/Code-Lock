@@ -5,9 +5,8 @@ Call function protection
 ------------------------
 1. Hook a call listener.
 2. If user does not call emergency number, ask for code.
-	Correct: Do the call.
-	Incorrect: Tell the user the code is incorrect.
-3.
+	- Correct: Do the call.
+	- Incorrect: Tell the user the code is incorrect.
 
 Messaging function protection
 -----------------------------

@@ -9,14 +9,23 @@ import android.widget.Button;
 public class MainActivity extends AppCompatActivity {
     TelecomManager telecomManager;
 
+    // The type of code the user will protect its payment-ridden functions.
+    private enum CodeType {
+        PINCODE,
+        PASSWORD,
+    }
+
+    private CodeType codeTypeSet;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        accessSettings();
+
         //displaySettings();
         //displayPinlock();
         //displayPasswordLock();
-        askUserToSetNewPassword();
 
         //EditText passwordEditText = findViewById(R.id.passwordEditText);
         //telecomManager = getTelecomService();
@@ -28,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void askUserToSetNewPincode() {
         setTitle("Set new pincode");
-        setContentView(R.layout.activity_set_pinlock);
+        setContentView(R.layout.activity_set_pincodelock);
         final Button button3 = findViewById(R.id.button3);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +59,16 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void accessSettings() {
+        if (codeTypeSet == CodeType.PASSWORD) {
+            askUserToSetNewPassword();
+        } else if (codeTypeSet == CodeType.PINCODE) {
+            askUserToSetNewPincode();
+        } else { // No lock currently set.
+            displaySettings();
+        }
+    }
+
     private void displaySettings() {
         setTitle("Settings");
         setContentView(R.layout.activity_settings);
@@ -62,6 +81,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayPinlock() {
         setTitle("Unlock with pincode");
-        setContentView(R.layout.activity_pinlock);
+        setContentView(R.layout.activity_pincodelock);
     }
 }

@@ -9,7 +9,7 @@
         android:id="@+id/button3"
         android:layout_width="277dp"
         android:layout_height="138dp"
-        android:text="Set pin"
+        android:text="Set new pincode"
         android:textSize="72px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

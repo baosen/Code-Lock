@@ -20,5 +20,6 @@ public class CodeLockTelephonyConnectionService extends ConnectionService { // T
             return super.onCreateOutgoingConnection(connectionManagerPhoneAccount, request);
 
         // TODO: Ask for code.
+        return null;
     }
 }

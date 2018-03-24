@@ -6,15 +6,20 @@
     android:layout_height="match_parent"
     tools:context="baosen.codelock.MainActivity">
 
-    <ListView
-        android:id="@+id/settingsListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="411dp"
+        android:layout_height="53dp"
+        android:text="Set new pincode"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button6" />
 
-    </ListView>
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="411dp"
+        android:layout_height="53dp"
+        android:text="Set new password" />
 
 </android.support.constraint.ConstraintLayout>

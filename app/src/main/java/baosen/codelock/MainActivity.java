@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.telecom.TelecomManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
     TelecomManager telecomManager;
@@ -16,19 +17,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private CodeType codeTypeSet;
+    private String code; // TODO: Hash it with bcrypt!
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         accessSettings();
-
-        //displaySettings();
-        //displayPinlock();
-        //displayPasswordLock();
-
-        //EditText passwordEditText = findViewById(R.id.passwordEditText);
-        //telecomManager = getTelecomService();
     }
 
     private TelecomManager getTelecomService() {
@@ -42,9 +37,15 @@ public class MainActivity extends AppCompatActivity {
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displaySettings();
+                codeTypeSet = CodeType.PINCODE;
+                code = getPincodeInputted();
+                accessSettings();
             }
         });
+    }
+
+    private String getPincodeInputted() {
+        return ((EditText)findViewById(R.id.editText2)).getText().toString();
     }
 
     private void askUserToSetNewPassword() {
@@ -54,24 +55,45 @@ public class MainActivity extends AppCompatActivity {
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                displaySettings();
+                codeTypeSet = CodeType.PASSWORD;
+                code = ((EditText)findViewById(R.id.passwordEditText)).getText().toString();
+                accessSettings();
             }
         });
     }
 
     private void accessSettings() {
         if (codeTypeSet == CodeType.PASSWORD) {
-            askUserToSetNewPassword();
+            displayPasswordLock();
         } else if (codeTypeSet == CodeType.PINCODE) {
-            askUserToSetNewPincode();
+            displayPinlock();
         } else { // No lock currently set.
             displaySettings();
         }
     }
 
+    private void setupSettingsButtons() {
+        Button setNewPincodeButton = findViewById(R.id.button2);
+        setNewPincodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askUserToSetNewPincode();
+            }
+        });
+
+        Button setNewPasswordButton = findViewById(R.id.button6);
+        setNewPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askUserToSetNewPassword();
+            }
+        });
+    }
+
     private void displaySettings() {
         setTitle("Settings");
         setContentView(R.layout.activity_settings);
+        setupSettingsButtons();
     }
 
     private void displayPasswordLock() {
@@ -82,5 +104,14 @@ public class MainActivity extends AppCompatActivity {
     private void displayPinlock() {
         setTitle("Unlock with pincode");
         setContentView(R.layout.activity_pincodelock);
+
+        Button unlockButton = findViewById(R.id.button3);
+        unlockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getPincodeInputted().equals(code))
+                    displaySettings();
+            }
+        });
     }
 }

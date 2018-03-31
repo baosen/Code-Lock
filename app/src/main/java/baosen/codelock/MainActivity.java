@@ -6,6 +6,7 @@ import android.telecom.TelecomManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     TelecomManager telecomManager;
@@ -33,8 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private void askUserToSetNewPincode() {
         setTitle("Set new pincode");
         setContentView(R.layout.activity_set_pincodelock);
-        final Button button3 = findViewById(R.id.pincodeUnlockButton);
-        button3.setOnClickListener(new View.OnClickListener() {
+        final Button pincodeUnlockButton = findViewById(R.id.pincodeUnlockButton);
+        pincodeUnlockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 codeTypeSet = CodeType.PINCODE;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Setup menu settings buttons.
     private void setupMenuSettingsButtons() {
-        Button setNewPincodeSettingsButton = findViewById(R.id.setNewPincodeSettingsButton);
+        final Button setNewPincodeSettingsButton = findViewById(R.id.setNewPincodeSettingsButton);
         setNewPincodeSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button setNewPasswordSettingsButton = findViewById(R.id.setNewPasswordSettingsButton);
+        final Button setNewPasswordSettingsButton = findViewById(R.id.setNewPasswordSettingsButton);
         setNewPasswordSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -96,6 +97,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void setInfoTextViewInUnlockPincodeActivity(final String message) {
+        TextView infoTextView = findViewById(R.id.unlockPincodeInfoTextView);
+        infoTextView.setText(message);
+    }
+
+    private void setInfoTextViewInUnlockPasswordActivity(final String message) {
+        TextView infoTextView = findViewById(R.id.unlockPasswordInfotextView);
+        infoTextView.setText(message);
     }
 
     private void displaySettings() {
@@ -112,8 +123,11 @@ public class MainActivity extends AppCompatActivity {
         passwordUnlockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getPasswordInputted().equals(code))
+                if (getPasswordInputted().equals(code)) {
                     displaySettings();
+                    return;
+                }
+                setInfoTextViewInUnlockPasswordActivity("Incorrect password!");
             }
         });
     }
@@ -126,8 +140,11 @@ public class MainActivity extends AppCompatActivity {
         unlockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getPincodeInputted().equals(code))
+                if (getPincodeInputted().equals(code)) {
                     displaySettings();
+                    return;
+                }
+                setInfoTextViewInUnlockPincodeActivity("Incorrect pincode!");
             }
         });
     }

@@ -7,17 +7,17 @@
     tools:context="baosen.codelock.MainActivity">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/setNewPincodeSettingsButton"
         android:layout_width="411dp"
         android:layout_height="53dp"
         android:text="Set new pincode"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button6" />
+        app:layout_constraintTop_toBottomOf="@+id/setNewPasswordSettingsButton" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/setNewPasswordSettingsButton"
         android:layout_width="411dp"
         android:layout_height="53dp"
         android:text="Set new password" />

@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private void askUserToSetNewPincode() {
         setTitle("Set new pincode");
         setContentView(R.layout.activity_set_pincodelock);
-        final Button button3 = findViewById(R.id.button3);
+        final Button button3 = findViewById(R.id.pincodeUnlockButton);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,15 +44,21 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    // Returns the text string inside the pincode edit text.
     private String getPincodeInputted() {
-        return ((EditText)findViewById(R.id.editText2)).getText().toString();
+        return ((EditText)findViewById(R.id.pincodeEditText)).getText().toString();
+    }
+
+    // Returns the text string inside the password edit text.
+    private String getPasswordInputted() {
+        return ((EditText)findViewById(R.id.passwordEditText)).getText().toString();
     }
 
     private void askUserToSetNewPassword() {
         setTitle("Set new password");
         setContentView(R.layout.activity_set_passwordlock);
-        final Button button4 = findViewById(R.id.button4);
-        button4.setOnClickListener(new View.OnClickListener() {
+        final Button setNewPasswordButton = findViewById(R.id.setNewPasswordButton);
+        setNewPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 codeTypeSet = CodeType.PASSWORD;
@@ -72,40 +78,51 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void setupSettingsButtons() {
-        Button setNewPincodeButton = findViewById(R.id.button2);
-        setNewPincodeButton.setOnClickListener(new View.OnClickListener() {
+    // Setup menu settings buttons.
+    private void setupMenuSettingsButtons() {
+        Button setNewPincodeSettingsButton = findViewById(R.id.setNewPincodeSettingsButton);
+        setNewPincodeSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 askUserToSetNewPincode();
             }
         });
 
-        Button setNewPasswordButton = findViewById(R.id.button6);
-        setNewPasswordButton.setOnClickListener(new View.OnClickListener() {
+        Button setNewPasswordSettingsButton = findViewById(R.id.setNewPasswordSettingsButton);
+        setNewPasswordSettingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 askUserToSetNewPassword();
             }
         });
+
     }
 
     private void displaySettings() {
         setTitle("Settings");
         setContentView(R.layout.activity_settings);
-        setupSettingsButtons();
+        setupMenuSettingsButtons();
     }
 
     private void displayPasswordLock() {
         setTitle("Unlock with password");
         setContentView(R.layout.activity_passwordlock);
+
+        Button passwordUnlockButton = findViewById(R.id.passwordUnlockButton);
+        passwordUnlockButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (getPasswordInputted().equals(code))
+                    displaySettings();
+            }
+        });
     }
 
     private void displayPinlock() {
         setTitle("Unlock with pincode");
         setContentView(R.layout.activity_pincodelock);
 
-        Button unlockButton = findViewById(R.id.button3);
+        Button unlockButton = findViewById(R.id.pincodeUnlockButton);
         unlockButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
